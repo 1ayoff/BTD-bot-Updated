@@ -394,14 +394,8 @@ async def dadaman(ctx):
         'dadaman has entered the chat.',
         'dadaman said handle your business.',
         'dadaman is observing.',
-    ]))
-
-@bot.hybrid_command(description='Sam, banish the doubt.')
-async def sam(ctx):
-    await ctx.send(random.choice([
-        'Sam. One thing at a time.',
-        'Sam, banish the doubt.',
-        'Sam is still writing his story.',
+        'Have no fear! DadaMan is here!',
+        "i'm dada", 
     ]))
 
 @bot.hybrid_command(description='Show the latest track from a linked Last.fm account.')
