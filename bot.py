@@ -609,7 +609,7 @@ async def help(ctx):
     e.add_field(name='utilities', value='`avatar` · `banner` · `servericon` · `membercount` · `roleinfo @role`', inline=False)
     e.add_field(name='fun', value='`coinflip` · `roll [sides]` · `choose option | option` · `8ball question`', inline=False)
     e.add_field(name='music', value='`fm set username` · `np [@user]` · `fm remove`\n`toptracks [week/month/year/all]` · `topartists [week/month/year/all]`', inline=False)
-    e.add_field(name='btd', value='`quote` · `dadaman` · `sam`', inline=False)
+    e.add_field(name='btd', value='`quote` · `dadaman`', inline=False)
     e.add_field(name='rep', value='`rep @user` · `reps [@user]` · `leaderboard`\nOne rep per person every 24 hours.', inline=False)
     e.add_field(name='roles', value='`autorole @role` · `autoroleoff` · `roleall @role [true]`', inline=False)
     e.add_field(name='moderation', value='`purge 1–100` · `kick @user [reason]` · `ban @user [reason]`\n`unban user_id [reason]` · `timeout @user minutes [reason]`\n`untimeout @user` · `nick @user [nickname]`\n`say message` · `announce message`\n`snipe` · `editsnipe` · `clearsnipe`', inline=False)
