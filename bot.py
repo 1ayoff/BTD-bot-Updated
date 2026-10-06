@@ -1,4 +1,4 @@
-"""BTD: moderation, logging, reputation and Last.fm. Python 3.11+."""
+"""BTD: shi ill prob add more commands later but it has moderation, logging, reputation and Last.fm. Python 3.11+."""
 import asyncio
 import logging
 import random
@@ -397,7 +397,7 @@ async def on_message_edit(before, after):
             await audit(after.guild, 'Message edited', f'{after.author} • {after.jump_url}')
 
 
-# Original BTD lines, not quotations attributed to real people.
+# i used ai for these quotes lol
 BTD_QUOTES = [
     'You can be angry and still choose what happens next.',
     'A bad chapter does not get to name the whole book.',
@@ -469,7 +469,7 @@ async def topartists(ctx, period: str = 'month', member: discord.Member = None):
     await show_top(ctx, member, period, 'artists')
 
 
-# At most one recent entry per channel, capped globally and never written to disk.
+# lawful citizen
 deleted_snipes = OrderedDict()
 edited_snipes = OrderedDict()
 
@@ -490,7 +490,7 @@ async def show_snipe(ctx, cache, title):
         return await ctx.send('Nothing recent to snipe here.', ephemeral=bool(ctx.interaction))
     e = embed(title, discord.utils.escape_markdown(row[2])[:3900])
     e.set_footer(text=row[1][:200])
-    # Slash results are private to the moderator; comma results appear in this channel.
+    # show or hide
     await ctx.send(embed=e, ephemeral=bool(ctx.interaction))
 
 async def snipe_access(ctx):
@@ -674,7 +674,7 @@ async def statuscycle(ctx, *, statuses: str):
     if not 2 <= len(choices) <= 10 or any(len(x) > 128 for x in choices):
         raise commands.BadArgument('Use 2–10 statuses, up to 128 characters each, separated by |.')
     status_cycle.cancel()
-    # Let a canceled loop finish before starting its replacement.
+    # yes indeed let a canceled loop finish before starting its replacement.
     previous = status_cycle.get_task()
     if previous:
         try:
@@ -814,7 +814,7 @@ async def on_command_error(ctx, error):
     elif isinstance(original, discord.HTTPException):
         text = 'Discord could not complete that action. Try again later.'
     else:
-        # Do not print exception strings that may include credential-bearing URLs.
+      
         log.error('Command %s failed (%s)', ctx.command, type(original).__name__)
         text = 'Something went wrong. Check the bot console.'
     await ctx.send(text)
