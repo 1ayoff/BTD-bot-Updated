@@ -570,14 +570,6 @@ async def dadaman(ctx):
         'dadaman is observing.',
     ]))
 
-@bot.hybrid_command(description='Sam, banish the doubt.')
-async def sam(ctx):
-    await ctx.send(random.choice([
-        'Sam. One thing at a time.',
-        'Sam, banish the doubt.',
-        'Sam is still writing his story.',
-    ]))
-
 @bot.hybrid_command(description='Show the latest track from a linked Last.fm account.')
 @commands.cooldown(1, 5, commands.BucketType.user)
 async def np(ctx, member: discord.Member = None):
