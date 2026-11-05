@@ -1,0 +1,19 @@
+services:
+  btd-bot:
+    build: .
+    container_name: btd-bot
+    restart: unless-stopped
+    env_file: .env
+    volumes:
+      - btd-data:/app/data      # levels, warnings, reminders, settings live here
+    read_only: true
+    tmpfs:
+      - /tmp
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    mem_limit: 256m
+
+volumes:
+  btd-data:
