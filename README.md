@@ -1,39 +1,43 @@
-# BTD Bot
+# btd bot
 
-banish the doubt. A Discord bot with moderation, levels, reminders, warnings, logs and fun commands. The prefix is `,` and `,help` lists every command.
+**banish the doubt.**
 
-## Run on the VPS (Docker)
+this is the bot that runs [discord.gg/banish](https://discord.gg/banish). i built it because i wanted one bot that did everything my server needed without paying for five different ones. moderation, levels, reminders, warnings, logs, last.fm, rep, and some fun stuff on top.
+
+prefix is `,` and `,help` shows you everything.
+
+## running it on a vps (docker)
 
 ```bash
 git clone https://github.com/1ayoff/BTD-bot-Updated.git
 cd BTD-bot-Updated
 cp .env.example .env
-nano .env                       # paste your DISCORD_TOKEN
+nano .env                       # put your DISCORD_TOKEN in here
 docker compose up -d --build
-docker compose logs -f          # should say "Logged in as ..."
+docker compose logs -f          # you should see "Logged in as ..."
 ```
 
-To update after you push changes, run `git pull && docker compose up -d --build`.
+to update it by hand: `git pull && docker compose up -d --build`
 
-### Auto-deploy (optional)
+### auto-deploy
 
-`deploy/autodeploy.sh` checks GitHub every minute and redeploys when there are new commits. Set it up once:
+i got tired of ssh-ing in every time i changed something, so `deploy/autodeploy.sh` checks github every minute and redeploys by itself when there's a new commit. one-time setup:
 
 ```bash
 chmod +x deploy/autodeploy.sh
-./deploy/autodeploy.sh                     # test run - should finish without asking for a password
+./deploy/autodeploy.sh          # test run, shouldn't ask for a password
 (crontab -l 2>/dev/null; echo "* * * * * $PWD/deploy/autodeploy.sh >> $HOME/btd-deploy.log 2>&1") | crontab -
 ```
 
-Watch deploys with `tail -f ~/btd-deploy.log`. To turn it off, run `crontab -e` and delete the line.
+`tail -f ~/btd-deploy.log` to watch it work. to turn it off, `crontab -e` and delete the line.
 
-## Discord developer portal settings
+## discord developer portal
 
-Under **Bot**, turn on **Message Content Intent** and **Server Members Intent**. Without both, commands and welcome messages won't work.
+under **Bot**, turn on **Message Content Intent** and **Server Members Intent**. if you skip these, commands and welcome messages just won't work.
 
-The bot's role needs to be **above** any roles it manages (for kick, ban, timeout, nick, role and autorole).
+also put the bot's role **above** any role you want it to manage (kick, ban, timeout, nick, role, autorole). discord won't let it touch roles higher than its own.
 
-## First-time server setup
+## first time in a new server
 
 ```
 ,setlog #mod-logs
@@ -42,9 +46,13 @@ The bot's role needs to be **above** any roles it manages (for kick, ban, timeou
 ,settings
 ```
 
-## Run locally
+## running it locally
 
 ```bash
 pip install -r requirements.txt
 python bot.py
 ```
+
+---
+
+made by sayo. if you're reading this, i love you fr. i love everyone 🖤
