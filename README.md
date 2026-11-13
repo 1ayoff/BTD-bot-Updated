@@ -80,4 +80,4 @@ python bot.py
 
 ---
 
-made by sayo. love everyone 🖤
+made by sayo. love everyone
