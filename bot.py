@@ -352,12 +352,12 @@ async def heartbeat_loop():
     if bot.is_closed() or not bot.is_ready():
         return
     try:
-        async with aiohttp.ClientSession() as session:
-            await session.post(
-                HEARTBEAT_URL,
-                headers={"Authorization": f"Bearer {HEARTBEAT_TOKEN}"},
-                timeout=aiohttp.ClientTimeout(total=10),
-            )
+        async with bot.http_session.post(
+            HEARTBEAT_URL,
+            headers={"Authorization": f"Bearer {HEARTBEAT_TOKEN}"},
+            timeout=aiohttp.ClientTimeout(total=10),
+        ):
+            pass
     except Exception as e:
         print("heartbeat failed:", type(e).__name__)
 
@@ -1348,7 +1348,7 @@ HELP = {
             ("afk", "[reason]", "go AFK, pings get an auto-reply"),
             ("snipe", "", "show the last deleted message here"),
             ("rank", "[@user]", "level and XP"),
-            ("leaderboard", "", "top 10 by XP"),
+            ("leaderboard", "", "server XP leaderboard"),
         ],
     },
     "Music & Rep": {
@@ -1359,7 +1359,7 @@ HELP = {
             ("fm remove", "", "unlink your Last.fm"),
             ("rep", "[@user]", "give +1 rep (once a day) or check yours"),
             ("reps", "[@user]", "see someone's rep"),
-            ("replb", "", "top 10 by rep"),
+            ("replb", "", "server rep leaderboard"),
         ],
     },
     "Moderation": {

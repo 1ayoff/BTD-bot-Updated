@@ -4,7 +4,20 @@
 
 this is the bot that runs [discord.gg/banish](https://discord.gg/banish). i built it because i wanted one bot that did everything my server needed without paying for five different ones. moderation, levels, reminders, warnings, logs, last.fm, rep, and some fun stuff on top.
 
-prefix is `,` and `,help` shows you everything.
+prefix is `,` and `,help` pulls up a menu with everything.
+
+## what it does
+
+- **moderation** - kick, ban, timeout, warn (they get a dm), purge, lock/unlock, slowmode. it checks role hierarchy so mods can't touch people above them
+- **logs** - joins, leaves, deleted and edited messages, and every mod action goes to your log channel
+- **levels** - xp for talking (with a cooldown so spamming doesn't work), `,rank` and a leaderboard
+- **rep** - give someone +1 once a day, `,replb` for the top
+- **last.fm** - `,fm` shows what you're playing with your scrobble count
+- **utility** - reminders that survive restarts, afk with auto replies, `,snipe`, `,whois` with buttons
+- **fun** - 8ball, dice, coinflip, polls, `,choose`
+- **setup** - welcome messages and autorole per server
+
+everything's saved in sqlite so nothing resets when the bot restarts.
 
 ## running it on a vps (docker)
 
@@ -17,7 +30,19 @@ docker compose up -d --build
 docker compose logs -f          # you should see "Logged in as ..."
 ```
 
+the container runs as a non-root user with a read-only filesystem and no extra privileges, so even if something goes wrong it can't do much.
+
 to update it by hand: `git pull && docker compose up -d --build`
+
+### settings (.env)
+
+| variable | what it's for |
+| --- | --- |
+| `DISCORD_TOKEN` | required, your bot token |
+| `OWNER_ID` | your discord id so `,status` works |
+| `PREFIX` | if you want something other than `,` |
+| `LASTFM_API_KEY` | turns on `,fm` ([get one here](https://www.last.fm/api/account/create)) |
+| `HEARTBEAT_URL` / `HEARTBEAT_TOKEN` | optional, pings a status page every minute |
 
 ### auto-deploy
 
@@ -55,4 +80,4 @@ python bot.py
 
 ---
 
-made by sayo. if you're reading this, i love you fr. i love everyone 🖤
+made by sayo. love everyone 🖤

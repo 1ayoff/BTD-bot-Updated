@@ -12,7 +12,9 @@ flock -n 9 || exit 0
 
 git fetch --quiet origin
 if [ "$(git rev-parse HEAD)" != "$(git rev-parse '@{u}')" ]; then
-  git merge --ff-only --quiet '@{u}'
+  # github is the source of truth, the vps just mirrors it. reset instead of
+  # merge so a rewritten history doesn't leave the vps stuck
+  git reset --hard --quiet '@{u}'
 fi
 
 # remember what's actually running so a failed build gets retried
